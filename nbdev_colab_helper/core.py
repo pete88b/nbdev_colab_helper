@@ -45,7 +45,6 @@ from configparser import ConfigParser
 from pathlib import Path
 
 def setup_project(project_name):
-  global config, project_config, git_url, git_branch
   print('Connecting to google drive')
   drive.mount('/content/drive')
   config_path = Path('/content/drive/My Drive/nbdev_colab_projects.ini')
@@ -69,3 +68,4 @@ def setup_project(project_name):
   _run_commands(['pip install git+https://github.com/fastai/nbdev.git'])
   setup_git(git_url, git_branch, project_config['git_user_name'],
             project_config['git_user_password'], project_config['git_user_email'])
+  return config, project_config, git_url, git_branch
