@@ -39,7 +39,8 @@ def git_push(git_branch:str, message:str):
       f'git push origin {git_branch}'])
 
 # Cell
-from google.colab import drive
+if IN_COLAB:
+  from google.colab import drive
 from configparser import ConfigParser
 from pathlib import Path
 
