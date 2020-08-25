@@ -35,7 +35,7 @@ def git_push(git_branch:str, message:str):
   _run_commands([
       f'nbdev_install_git_hooks',
       f'nbdev_build_lib',
-      f'git add *',
+      f'git add *', # TODO: allow specific files to be pushed
       f'git commit -m "{message}"',
       f'git push origin {git_branch}'])
 
