@@ -61,9 +61,9 @@ def setup_project(project_name):
     print(f'Clone of {project_name} already exists in {project_path.parent}')
   else:
     project_path.parent.mkdir(parents=True, exist_ok=True)
-    %cd $project_path.parent
+    cd(project_path.parent)
     !git clone $git_url
-  %cd $project_path
+  cd(project_path)
   !pip install git+https://github.com/fastai/nbdev.git
   setup_git(git_url, git_branch, project_config['git_user_name'],
             project_config['git_user_password'], project_config['git_user_email'])
