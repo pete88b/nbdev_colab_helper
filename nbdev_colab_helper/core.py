@@ -62,8 +62,8 @@ def setup_project(project_name):
   else:
     project_path.parent.mkdir(parents=True, exist_ok=True)
     cd(project_path.parent)
-    !git clone $git_url
+    _run_commands(f'git clone {git_url}')
   cd(project_path)
-  !pip install git+https://github.com/fastai/nbdev.git
+  _run_commands('pip install git+https://github.com/fastai/nbdev.git')
   setup_git(git_url, git_branch, project_config['git_user_name'],
             project_config['git_user_password'], project_config['git_user_email'])
