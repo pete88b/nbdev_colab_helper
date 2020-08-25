@@ -45,6 +45,7 @@ from pathlib import Path
 
 def setup_project(project_name):
   global config, project_config, git_url, git_branch
+  print('Connecting to google drive')
   drive.mount('/content/drive')
   config_path = Path('/content/drive/My Drive/nbdev_colab_projects.ini')
   config = ConfigParser()
@@ -61,9 +62,9 @@ def setup_project(project_name):
     print(f'Clone of {project_name} already exists in {project_path.parent}')
   else:
     project_path.parent.mkdir(parents=True, exist_ok=True)
-    cd(project_path.parent)
+    get_ipython().magic(f'cd {project_path.parent}')
     _run_commands(f'git clone {git_url}')
-  cd(project_path)
+  get_ipython().magic(f'cd {project_path}')
   _run_commands('pip install git+https://github.com/fastai/nbdev.git')
   setup_git(git_url, git_branch, project_config['git_user_name'],
             project_config['git_user_password'], project_config['git_user_email'])
