@@ -9,6 +9,7 @@ IN_COLAB = 'google.colab' in str(get_ipython())
 import os, subprocess, urllib, shlex
 
 def _run_commands(commands, password=None):
+  "Run a list of commands making sure we mask `password` when printing commands"
   for cmd in commands:
     process = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE)
     output, err = process.communicate()
@@ -45,6 +46,7 @@ from configparser import ConfigParser
 from pathlib import Path
 
 def setup_project(project_name):
+  "Set-up the colab runtime for `project_name`"
   print('Connecting to google drive')
   drive.mount('/content/drive')
   config_path = Path('/content/drive/My Drive/nbdev_colab_projects.ini')
@@ -53,7 +55,7 @@ def setup_project(project_name):
   if project_name not in config:
     print(f'Error: [{project_name}] section not found in {config_path}')
     print(f'Please add a section for [{project_name}] and run `setup_project` again')
-    # TODO: add link to help page
+    print('See https://pete88b.github.io/nbdev_colab_helper/core.html for details')
     return
   project_config = config[project_name]
   project_path = Path(project_config['project_parent'])/project_name
@@ -68,4 +70,4 @@ def setup_project(project_name):
   _run_commands(['pip install git+https://github.com/fastai/nbdev.git'])
   setup_git(git_url, git_branch, project_config['git_user_name'],
             project_config['git_user_password'], project_config['git_user_email'])
-  return config, project_config, git_url, git_branch
+  return config, project_config
