@@ -31,7 +31,7 @@ def setup_git(git_url:str, git_branch:str, name:str, password:str, email:str):
       password)
 
 def git_push(git_branch:str, message:str):
-  "Convert the notebooks to scripts and then push to the library"
+  "Convert notebooks to scripts and then push to the library"
   _run_commands([
       f'nbdev_install_git_hooks',
       f'nbdev_build_lib',
