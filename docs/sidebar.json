@@ -1,6 +1,7 @@
 {
   "nbdev_colab_helper": {
     "Overview": "/",
-    "Core": "core.html"
+    "Core": "core.html",
+    "nbdev tutorial": "tutorial.html"
   }
 }

@@ -5,9 +5,12 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 index = {"IN_COLAB": "00_core.ipynb",
          "setup_git": "00_core.ipynb",
          "git_push": "00_core.ipynb",
-         "setup_project": "00_core.ipynb"}
+         "setup_project": "00_core.ipynb",
+         "say_hello": "tutorial.ipynb",
+         "HelloSayer": "tutorial.ipynb"}
 
-modules = ["core.py"]
+modules = ["core.py",
+           "tutorial.py"]
 
 doc_url = "https://pete88b.github.io/nbdev_colab_helper/"
 
