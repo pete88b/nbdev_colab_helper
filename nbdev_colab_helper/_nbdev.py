@@ -5,6 +5,7 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 index = {"IN_COLAB": "00_core.ipynb",
          "setup_git": "00_core.ipynb",
          "git_push": "00_core.ipynb",
+         "read_config": "00_core.ipynb",
          "setup_project": "00_core.ipynb",
          "init_notebook": "00_core.ipynb",
          "say_hello": "tutorial.ipynb",
