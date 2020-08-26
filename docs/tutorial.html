@@ -133,6 +133,11 @@ nb_path: "tutorial.ipynb"
 <p>4) Update <code>nbdev_colab_projects.ini</code> to have a section for your project, as desribed <a href="https://pete88b.github.io/nbdev_colab_helper/">here</a></p>
 <p>5) Run the "Install and import the colab helper module" cell</p>
 <p>6) Change <code>project_name</code> to match the project name you used in <code>/content/drive/My Drive/nbdev_colab_projects.ini</code> and run the "set-up project" cell</p>
+<p>After completing these steps, you should abe able to find your cloned repo in your google drive, via</p>
+<ul>
+<li>The "Files" side-bar in colab,</li>
+<li><a href="https://drive.google.com/">https://drive.google.com/</a> etc</li>
+</ul>
 
 </div>
 </div>
@@ -174,7 +179,7 @@ nb_path: "tutorial.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Jupyter Notebooks can cause challenges with git conflicts, but life becomes much easier when you use <code>nbdev</code>. As a first step, run <code>nbdev_install_git_hooks</code> in the terminal from your project folder. This will set up git hooks which will remove metadata from your notebooks when you commit, greatly reducing the chance you have a conflict.</p>
+<p>Jupyter Notebooks can cause challenges with git conflicts, but life becomes much easier when you use <code>nbdev</code>. <a href="/nbdev_colab_helper/core.html#git_push"><code>git_push</code></a> will run <code>nbdev_install_git_hooks</code> automatically. This will set up git hooks which will remove metadata from your notebooks when you commit, greatly reducing the chance you have a conflict.</p>
 <p>But if you do get a conflict later, simply run <code>nbdev_fix_merge filename.ipynb</code>. This will replace any conflicts in cell outputs with your version, and if there are conflicts in input cells, then both cells will be included in the merged file, along with standard conflict markers (e.g. <code>=====</code>). Then you can open the notebook in Jupyter and choose which version to keep.</p>
 
 </div>
@@ -188,13 +193,18 @@ nb_path: "tutorial.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now, run <code>jupyter notebook</code>, and click <code>00_core.ipynb</code> (you don't <em>have</em> to start your notebook names with a number like we do here; but we find it helpful to show the order you've created your project in). You'll see something that looks a bit like this:</p>
+<p>Now, open <code>00_core.ipynb</code> from your cloned repo (you don't <em>have</em> to start your notebook names with a number like we do here; but we find it helpful to show the order you've created your project in). You'll see something that looks a bit like this:</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbdev</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="o">%</span><span class="n">nbdev_default_export</span> <span class="n">core</span>
 </pre></div>
 <p><strong>module name here</strong></p>
 <blockquote><p>API details.</p>
 </blockquote>
+<p>If it doesn't look like &uarr; please update it so that it does (o:You'll need to run some colab specific setup in each notebook, if you want to use all nbdev features. Add a new code cell to the start of <code>00_core.ipynb</code> and run:</p>
+<div class="highlight"><pre><span></span><span class="n">IN_COLAB</span> <span class="o">=</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_ipython</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
+  <span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">fastai</span><span class="o">/</span><span class="n">nbdev</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
 <p>Let's explain what these special cells mean.</p>
 
 </div>
