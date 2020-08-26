@@ -56,7 +56,7 @@ def setup_project(project_name):
     print(f'Error: [{project_name}] section not found in {config_path}')
     print(f'Please add a section for [{project_name}] and run `setup_project` again')
     print('See https://pete88b.github.io/nbdev_colab_helper/core.html for details')
-    return
+    return config, None
   project_config = config[project_name]
   project_path = Path(project_config['project_parent'])/project_name
   git_url, git_branch = project_config['git_url'], project_config['git_branch']
@@ -64,8 +64,8 @@ def setup_project(project_name):
     print(f'Clone of {project_name} already exists in {project_path.parent}')
   else:
     project_path.parent.mkdir(parents=True, exist_ok=True)
-    get_ipython().magic(f'cd {project_path.parent}')
-    _run_commands([f'git clone {git_url}'])
+    # get_ipython().magic(f'cd {project_path.parent}')
+    _run_commands([f'git clone {git_url} {project_path}'])
   get_ipython().magic(f'cd {project_path}')
   _run_commands(['pip install git+https://github.com/fastai/nbdev.git'])
   setup_git(git_url, git_branch, project_config['git_user_name'],
