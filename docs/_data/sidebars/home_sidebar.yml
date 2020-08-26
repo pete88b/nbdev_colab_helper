@@ -13,7 +13,7 @@ entries:
       title: Core
       url: core.html
     - output: web,pdf
-      title: nbdev tutorial
+      title: nbdev in colab tutorial
       url: tutorial.html
     output: web
     title: nbdev_colab_helper
