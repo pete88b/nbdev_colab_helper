@@ -454,6 +454,7 @@ Converted index.ipynb.</code></pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Please remove <code>permalink: pretty</code> from <code>docs/_config.yml</code> - if you see "404: File not found" errors when navigating your docs, this could well be the problem. TODO: remove this when bug is fixed in nbdev/nbdev_template.</p>
 <p>Now you can create your documentation. To do so, go back to your colab helper notebook and run:</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbdev.cli</span> <span class="kn">import</span> <span class="n">nbdev_build_docs</span>
 <span class="n">nbdev_build_docs</span><span class="p">()</span>
@@ -786,10 +787,19 @@ All tests are passing!</code></pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To test and use your modules in other projects, and use your console scripts (if you have any), the easiest approach is to use an <a href="http://codumentary.blogspot.com/2014/11/python-tip-of-year-pip-install-editable.html">editable install</a>. To do this, <code>cd</code> to the root of your repo in the terminal, and type:</p>
-
-<pre><code>pip install -e .</code></pre>
+<p>To test and use your modules in other projects, and use your console scripts (if you have any), the easiest approach is to use an <a href="http://codumentary.blogspot.com/2014/11/python-tip-of-year-pip-install-editable.html">editable install</a>.</p>
+<p>Once you've mounted your google drive, you can install editable versions of projects (if you have already <code>git cloned</code> the project into your google drive).</p>
+<p>The following example installs a local copy of <code>nbdev_colab_helper</code> after running <code>setup_project('nbdev_colab_helper')</code>:</p>
+<div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;/content/drive/My Drive/Colab Notebooks/github/nbdev_colab_helper&quot;</span>
+</pre></div>
 <p>(Note that the trailing period is important.) Your module changes will be automatically picked up without reinstalling. If you add any additional console scripts, you will need to run this command again.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Waiting-for-file-changes-in-colab">Waiting for file changes in colab<a class="anchor-link" href="#Waiting-for-file-changes-in-colab"> </a></h3><p>TODO: try to explain when/why file changes are not seen immediately and work arounds</p>
 
 </div>
 </div>
@@ -802,6 +812,7 @@ All tests are passing!</code></pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>TODO: Test this and add colab specific details</p>
 <p>If you want people to be able to install your project by just typing <code>pip install your-project</code> then you need to upload it to <a href="https://pypi.org/">pypi</a>. The good news is, we've already created a fully pypi compliant installer for your project! So all you need to do is register at pypi (click "Register" on pypi) if you haven't previously done so, and then create a file called <code>~/.pypirc</code> with your login details. It should have these contents:</p>
 
 <pre><code>[pypi]
@@ -809,23 +820,6 @@ username = your_pypi_username
 password = your_pypi_password</code></pre>
 <p>To upload your project to pypi, just type <code>make release</code> in your project root directory. Once it's complete, a link to your project on pypi will be printed.</p>
 <p><strong>NB</strong>: <code>make release</code> will automatically increment the version number in <code>settings.py</code> before pushing a new release to pypi. If you don't want to do this, run <code>make pypi</code> instead.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Install-collapsible-headings-and-toc2">Install collapsible headings and toc2<a class="anchor-link" href="#Install-collapsible-headings-and-toc2"> </a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>There are two jupyter notebook extensions that I highly recommend when working with projects like this. They are:</p>
-<ul>
-<li><a href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/collapsible_headings/readme.html">Collapsible headings</a>: This lets you fold and unfold each section in your notebook, based on its markdown headings. You can also hit <kbd>left</kbd> to go to the start of a section, and <kbd>right</kbd> to go to the end</li>
-<li><a href="https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/toc2/README.html">TOC2</a>: This adds a table of contents to your notebooks, which you can navigate either with the <code>Navigate</code> menu item it adds to your notebooks, or the TOC sidebar it adds. These can be modified and/or hidden using its settings.</li>
-</ul>
 
 </div>
 </div>

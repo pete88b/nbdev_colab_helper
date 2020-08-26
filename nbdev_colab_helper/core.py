@@ -89,4 +89,5 @@ def init_notebook(project_name):
   get_ipython().magic(f'cd {project_path}')
   _run_commands(['pip install git+https://github.com/fastai/nbdev.git'])
   # TODO: de-duplicate with setup_project
+  # TODO: Read `requirements` section in `settings.ini` and install all reqs here
 
