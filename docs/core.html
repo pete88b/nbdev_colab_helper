@@ -32,7 +32,7 @@ nb_path: "00_core.ipynb"
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The goal of this project is to make it as easy as possible to work with nbdev and github without leaving colab.</p>
-<h2 id="Regular-nbdev-notebooks">Regular nbdev notebooks<a class="anchor-link" href="#Regular-nbdev-notebooks"> </a></h2><p>As you can see from this notebook, you don't have to <code>!pip install nbdev</code> in every notebook.</p>
+<h2 id="Regular-nbdev-notebooks">Regular nbdev notebooks<a class="anchor-link" href="#Regular-nbdev-notebooks"> </a></h2><p>As you can see from <a href="https://github.com/pete88b/nbdev_colab_helper/blob/master/00_core.ipynb">this notebook</a>, you don't have to <code>!pip install nbdev</code> in every notebook.</p>
 <p>You can use the following pattern to avoid running colab specific things in non-colab environments, like mounting your google drive:</p>
 <div class="highlight"><pre><span></span><span class="n">IN_COLAB</span> <span class="o">=</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_ipython</span><span class="p">())</span>
 <span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
@@ -63,7 +63,7 @@ git_branch = master
 [nbdev_demo]
 git_url = https://github.com/pete88b/nbdev_demo.git
 git_branch = main</code></pre>
-<p>See <code>ConfigParser</code> for details on how this file can be formatted.</p>
+<p>See <a href="https://docs.python.org/3/library/configparser.html">ConfigParser</a> for details on how this file can be formatted.</p>
 <p>The name of the colab helper notebook is not important and it doesn't have to be part of your nbdev project - you could manage any number of nbdev projects from a single colab helper notebook.</p>
 
 </div>
@@ -86,6 +86,13 @@ git_branch = main</code></pre>
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I think checking the name of the ipython shell &uarr; is the most reliable way of checking if we're running in colab or not.</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -175,6 +182,22 @@ git_branch = main</code></pre>
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This function will:</p>
+<ul>
+<li>mount your google drive to <code>/content/drive</code>,</li>
+<li>read project settings from <code>/content/drive/My Drive/nbdev_colab_projects.ini</code>,</li>
+<li><code>git clone</code> the project to <code>project_path</code> if <code>project_path</code> doesn't already exist,</li>
+<li><code>cd</code> to <code>project_path</code>,</li>
+<li>install nbdev,</li>
+<li>run <a href="/nbdev_colab_helper/core.html#setup_git"><code>setup_git</code></a> and</li>
+<li>return <code>config</code> (the <code>ConfigParser</code> used to read <code>nbdev_colab_projects.ini</code>) and <code>project_config</code> (the project section of <code>config</code>)</li>
+</ul>
+
+</div>
+</div>
+</div>
 </div>
  
 
