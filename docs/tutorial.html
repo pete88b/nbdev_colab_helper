@@ -138,6 +138,7 @@ nb_path: "tutorial.ipynb"
 <li>The "Files" side-bar in colab,</li>
 <li><a href="https://drive.google.com/">https://drive.google.com/</a> etc</li>
 </ul>
+<p>Feel free to save your copy of the colab helper notebook in your google drive.</p>
 
 </div>
 </div>
@@ -420,10 +421,12 @@ nb_path: "tutorial.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now you can create your python module. To do so, just run <code>nbdev_build_lib</code> from the terminal when anywhere in your project folder.</p>
+<p>Now you can create your python module. To do so, go back to your colab helper notebook and run:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbdev.export</span> <span class="kn">import</span> <span class="n">notebook2script</span>
+<span class="n">notebook2script</span><span class="p">()</span>
+</pre></div>
 
-<pre><code>$ nbdev_build_lib
-Converted 00_core.ipynb.
+<pre><code>Converted 00_core.ipynb.
 Converted index.ipynb.</code></pre>
 
 </div>
@@ -451,11 +454,14 @@ Converted index.ipynb.</code></pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now you can create your documentation. To do so, just run <code>nbdev_build_docs</code> from the terminal when anywhere in your project folder.</p>
+<p>Now you can create your documentation. To do so, go back to your colab helper notebook and run:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbdev.cli</span> <span class="kn">import</span> <span class="n">nbdev_build_docs</span>
+<span class="n">nbdev_build_docs</span><span class="p">()</span>
+</pre></div>
 
-<pre><code>$ nbdev_build_docs
-converting: /home/jhoward/git/nbdev/nbs/00_core.ipynb
-converting: /home/jhoward/git/nbdev/nbs/index.ipynb</code></pre>
+<pre><code>converting: /content/drive/My Drive/Colab Notebooks/github/nbdev_colab_t1/00_core.ipynb
+converting: /content/drive/My Drive/Colab Notebooks/github/nbdev_colab_t1/index.ipynb
+converting /content/drive/My Drive/Colab Notebooks/github/nbdev_colab_t1/index.ipynb to README.md</code></pre>
 
 </div>
 </div>
@@ -468,7 +474,24 @@ converting: /home/jhoward/git/nbdev/nbs/index.ipynb</code></pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>You can now <code>git commit</code> and <code>git push</code>. Wait a minute or two for Github to process your commit, and then head over to the Github website to look at your results.</p>
+<p>You can now <code>git commit</code> and <code>git push</code>. To do so, go back to your colab helper notebook and (after changing the commit message) run:</p>
+<div class="highlight"><pre><span></span><span class="n">commit_message</span> <span class="o">=</span> <span class="s1">&#39;**changeme**&#39;</span>
+<span class="n">git_push</span><span class="p">(</span><span class="n">project_config</span><span class="p">[</span><span class="s1">&#39;git_branch&#39;</span><span class="p">],</span> <span class="n">commit_message</span><span class="p">)</span>
+</pre></div>
+
+<pre><code>nbdev_install_git_hooks
+   Executing: git config --local include.path ../.gitconfig
+Success: hooks are installed and repo's .gitconfig is now trusted 
+nbdev_build_lib
+   Converted 00_core.ipynb.
+Converted index.ipynb.
+Converted tutorial.ipynb. 
+git add *
+git commit -m "*wip* tutorial"
+   [master 69d5dec] *wip* tutorial
+ 13 files changed, 126 insertions(+), 107 deletions(-)
+git push origin master</code></pre>
+<p>Wait a minute or two for Github to process your commit, and then head over to the Github website to look at your results.</p>
 
 </div>
 </div>
@@ -669,6 +692,7 @@ converting: /home/jhoward/git/nbdev/nbs/index.ipynb</code></pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>TODO: xxx check autoreload in colab</p>
 <p>Since you'll be often updating your modules from one notebook, and using them in another, it's helpful if your notebook automatically reads in the new modules as soon as the python file changes. To make this happen, just add these lines to the top of your notebook:</p>
 
 <pre><code>%load_ext autoreload
@@ -686,7 +710,8 @@ converting: /home/jhoward/git/nbdev/nbs/index.ipynb</code></pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>It's helpful to be able to export all your modules directly from a notebook, rather than going to the terminal to do it. All nbdev commands are available directly from a notebook in Python. Add this line to any cell and run it to export your modules (I normally make this the last cell of my scripts).</p>
-<div class="highlight"><pre><span></span><span class="n">notebook2script</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbdev.export</span> <span class="kn">import</span> <span class="n">notebook2script</span>
+<span class="n">notebook2script</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -700,11 +725,13 @@ converting: /home/jhoward/git/nbdev/nbs/index.ipynb</code></pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Before you push to github or make a release, you might want to run all your tests. nbdev can run all your notebooks in parallel to check for errors. Just run <code>nbdev_test_nbs</code> in a terminal.</p>
+<p>Before you push to github or make a release, you might want to run all your tests. nbdev can run all your notebooks in parallel to check for errors. To do so, go back to your colab helper notebook and run:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbdev.cli</span> <span class="kn">import</span> <span class="n">nbdev_test_nbs</span>
+<span class="n">nbdev_test_nbs</span><span class="p">()</span>
+</pre></div>
 
-<pre><code>(base) jhoward@usf3:~/git/nbdev$ nbdev_test_nbs
-testing: /home/jhoward/git/nbdev/nbs/00_core.ipynb
-testing: /home/jhoward/git/nbdev/nbs/index.ipynb
+<pre><code>testing /content/drive/My Drive/Colab Notebooks/github/nbdev_colab_t1/00_core.ipynb
+testing /content/drive/My Drive/Colab Notebooks/github/nbdev_colab_t1/index.ipynb
 All tests are passing!</code></pre>
 
 </div>
@@ -718,8 +745,7 @@ All tests are passing!</code></pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If you want to look at your docs locally before you push to Github, you can do so by running a jekyll server. First, install Jekyll by <a href="https://jekyllrb.com/docs/installation/ubuntu/">following these steps</a>. Then, install the modules needed for serving nbdev docs by <code>cd</code>ing to the <code>docs</code> directory, and typing <code>bundle install</code>. Finally, cd back to your repo root and type <code>make docs_serve</code>. This will launch a server on port 4000 (by default) which you can connect to with your browser to view your docs.</p>
-<p>If Github pages fails to build your docs, running locally with Jekyll is the easiest way to find out what the problem is.</p>
+<p>I don't think it's possible to look at your docs via colab before you push to Github.</p>
 
 </div>
 </div>
