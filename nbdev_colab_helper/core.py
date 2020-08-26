@@ -30,6 +30,8 @@ def setup_git(git_url:str, git_branch:str, name:str, password:str, email:str):
       f"git pull origin {git_branch} --allow-unrelated-histories"],
       password)
 
+# TODO: make it easy to work with git branches
+
 def git_push(git_branch:str, message:str):
   "Convert notebooks to scripts and then push to the library"
   _run_commands([
@@ -37,7 +39,7 @@ def git_push(git_branch:str, message:str):
       f'nbdev_build_lib',
       f'git add *', # TODO: allow specific files to be pushed
       f'git commit -m "{message}"',
-      f'git push origin {git_branch}'])
+      f'git push origin {git_branch}']) # TODO: show message when push fails!
 
 # Cell
 if IN_COLAB:
@@ -64,7 +66,6 @@ def setup_project(project_name):
     print(f'Clone of {project_name} already exists in {project_path.parent}')
   else:
     project_path.parent.mkdir(parents=True, exist_ok=True)
-    # get_ipython().magic(f'cd {project_path.parent}')
     _run_commands([f'git clone {git_url} {project_path}'])
   get_ipython().magic(f'cd {project_path}')
   _run_commands(['pip install git+https://github.com/fastai/nbdev.git'])
