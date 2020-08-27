@@ -27,7 +27,9 @@ def setup_git(git_url:str, git_branch:str, name:str, password:str, email:str):
       f"git init",
       f"git remote rm origin",
       f"git remote add origin {git_url.replace('://git', f'://{name}:{password}@git')}",
-      f"git pull origin {git_branch} --allow-unrelated-histories"],
+      f"git pull origin {git_branch}", # TODO: do we need --allow-unrelated-histories?
+      f"git checkout {git_branch}",
+      f"git push --set-upstream origin {git_branch}"]
       password)
 
 # TODO: make it easy to work with git branches
@@ -63,7 +65,7 @@ if IN_COLAB:
 def setup_project(project_name):
   "Set-up the colab runtime for `project_name`"
   print('Connecting to google drive')
-  drive.mount('/content/drive')
+  if not Path('/content/drive/My Drive').exists(): drive.mount('/content/drive')
   config, project_config = read_config(project_name)
   if project_config is None: return config, project_config
   project_path = Path(project_config['project_parent'])/project_name
