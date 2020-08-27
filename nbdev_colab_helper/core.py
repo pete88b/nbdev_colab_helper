@@ -32,8 +32,6 @@ def setup_git(git_url:str, git_branch:str, name:str, password:str, email:str):
       f"git push --set-upstream origin {git_branch}"],
       password)
 
-# TODO: make it easy to work with git branches
-
 def git_push(git_branch:str, message:str):
   "Convert notebooks to scripts and then push to the library"
   _run_commands([
@@ -59,13 +57,13 @@ def read_config(project_name):
   return config, config[project_name]
 
 # Cell
-if IN_COLAB:
-  from google.colab import drive
-
 def setup_project(project_name):
   "Set-up the colab runtime for `project_name`"
-  print('Connecting to google drive')
-  if not Path('/content/drive/My Drive').exists(): drive.mount('/content/drive')
+  assert IN_COLAB, "You do not appear to be running in Colab"
+  if not Path('/content/drive/My Drive').exists():
+    print('Connecting to google drive')
+    from google.colab import drive
+    drive.mount('/content/drive')
   config, project_config = read_config(project_name)
   if project_config is None: return config, project_config
   project_path = Path(project_config['project_parent'])/project_name
