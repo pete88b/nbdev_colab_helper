@@ -29,7 +29,7 @@ def setup_git(git_url:str, git_branch:str, name:str, password:str, email:str):
       f"git remote add origin {git_url.replace('://git', f'://{name}:{password}@git')}",
       f"git pull origin {git_branch}", # TODO: do we need --allow-unrelated-histories?
       f"git checkout {git_branch}",
-      f"git push --set-upstream origin {git_branch}"]
+      f"git push --set-upstream origin {git_branch}"],
       password)
 
 # TODO: make it easy to work with git branches
