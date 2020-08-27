@@ -2,6 +2,7 @@
   "nbdev_colab_helper": {
     "Overview": "/",
     "Core": "core.html",
-    "nbdev in colab tutorial": "tutorial.html"
+    "nbdev in colab tutorial": "tutorial.html",
+    "github workflow with colab tutorial": "tutorial_github.html"
   }
 }

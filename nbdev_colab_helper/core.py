@@ -32,8 +32,6 @@ def setup_git(git_url:str, git_branch:str, name:str, password:str, email:str):
       f"git push --set-upstream origin {git_branch}"],
       password)
 
-# TODO: make it easy to work with git branches
-
 def git_push(git_branch:str, message:str):
   "Convert notebooks to scripts and then push to the library"
   _run_commands([
