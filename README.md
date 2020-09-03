@@ -37,7 +37,7 @@ Now that nbdev is available to the runtime, you can `from nbdev import *` and st
  
 ## The colab helper notebook
  
-Having a colab helper notebook gives you a place to do the things you would do from the command line in a non-colab environment (like running nbdev or git commands). Feel free to use [this notebook](https://github.com/pete88b/nbdev_colab_helper/blob/master/_colab_helper.ipynb) as a starter.
+Having a colab helper notebook gives you a place to do the things you would do from the command line in a non-colab environment (like running nbdev or git commands). Feel free to use [this notebook](https://colab.research.google.com/github/pete88b/nbdev_colab_helper/blob/master/_colab_helper.ipynb) as a starter.
  
 Before we can run nbdev or git commands in a colab helper notebook, we need to set-up the colab runtime via a call to `nbdev_colab_helper.core.setup_project`.
  

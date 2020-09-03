@@ -82,6 +82,7 @@ def setup_project(project_name):
 # Cell
 def init_notebook(project_name):
   print('Connecting to google drive')
+  from google.colab import drive
   drive.mount('/content/drive')
   config, project_config = read_config(project_name)
   if project_config is None: return config, project_config
