@@ -74,7 +74,7 @@ def setup_project(project_name):
     project_path.parent.mkdir(parents=True, exist_ok=True)
     _run_commands([f'git clone {git_url} "{project_path}"'])
   get_ipython().magic(f'cd {project_path}')
-  _run_commands(['pip install nbdev==1.0.18'])
+  _run_commands(['pip install nbdev==1.0.14'])
   setup_git(git_url, git_branch, project_config['git_user_name'],
             project_config['git_user_password'], project_config['git_user_email'])
   return config, project_config
@@ -88,7 +88,7 @@ def init_notebook(project_name):
   if project_config is None: return config, project_config
   project_path = Path(project_config['project_parent'])/project_name
   get_ipython().magic(f'cd {project_path}')
-  _run_commands(['pip install nbdev==1.0.18'])
+  _run_commands(['pip install nbdev==1.0.14'])
   from nbdev.imports import Config
   get_ipython().magic(f'cd {Config().nbs_path}') # TODO is there a better way to know which dir the nb is in?
   # TODO: de-duplicate with setup_project
