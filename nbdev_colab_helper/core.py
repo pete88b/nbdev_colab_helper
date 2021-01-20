@@ -90,7 +90,7 @@ def init_notebook(project_name):
   get_ipython().magic(f'cd {project_path}')
   _run_commands(['pip install git+https://github.com/fastai/nbdev.git'])
   from nbdev.imports import Config
-  get_ipython().magic(f'cd {Config().nbs_path}')
+  get_ipython().magic(f'cd {Config().nbs_path}') # TODO is there a better way to know which dir the nb is in?
   # TODO: de-duplicate with setup_project
   # TODO: Read `requirements` section in `settings.ini` and install all reqs here
 
