@@ -2,6 +2,16 @@
 > Tools and tutorials to help working with nbdev in google colab.
 
 
+## Warning
+
+While nbdev is making breaking changes, this project is pinned to [version 1.0.14 of nbdev](https://pypi.org/project/nbdev/1.0.14/) - which has been yanked.
+
+Changes to [the fastai version of nbdev_template](https://github.com/fastai/nbdev_template) make it incompatible with nbdev 1.0.14 - but you can still work with [my fork of nbdev template](https://github.com/pete88b/nbdev_template).
+
+Please consider this a temporary solution - we'll update this project to use the latest version of nbdev once the breaking changes have slowed down.
+
+See [this issue](https://github.com/pete88b/nbdev_colab_helper/issues/3) for details.
+
 ## Install in colab
 
 Run the following code cell in a colab notebook:
